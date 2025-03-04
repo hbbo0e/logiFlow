@@ -1,4 +1,4 @@
-package com.example.logi;
+package kr.logiFlow.logi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,4 +1,4 @@
-package com.example.logi;
+package kr.logiFlow.logi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
