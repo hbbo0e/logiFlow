@@ -2,6 +2,7 @@ plugins {
 	id("java")
 	id("org.springframework.boot") version "3.3.1"
 	id("io.spring.dependency-management") version "1.1.5"
+	id("org.asciidoctor.jvm.convert") version "3.3.2" // Asciidoctor 플러그인 추가
 }
 
 group = 'com.example'
@@ -24,6 +25,11 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 
+	// spring rest docs
+	testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
+	implementation("org.springframework.restdocs:spring-restdocs-asciidoctor")
+
+
 	// mysql
 	runtimeOnly("com.mysql:mysql-connector-j")
 
@@ -45,4 +51,19 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+// Asciidoctor 태스크 설정 추가
+tasks.named('asciidoctor') {
+	dependsOn test // test 실행 후 asciidoctor 실행
+}
+
+tasks.register('copyDocs', Copy) {
+	dependsOn asciidoctor
+	from file("build/docs/asciidoc")
+	into file("src/main/resources/static/docs") // 문서 저장 위치
+}
+
+tasks.named("build") {
+	dependsOn copyDocs
 }
