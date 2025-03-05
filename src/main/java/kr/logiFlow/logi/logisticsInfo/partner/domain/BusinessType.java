@@ -1,6 +1,6 @@
 package kr.logiFlow.logi.logisticsInfo.partner.domain;
 
-public enum Business {
+public enum BusinessType {
 
   SUPPLIER, // 공급업체
   CUSTOMER, // 고객사
